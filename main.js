@@ -34,5 +34,23 @@ const prevSlide = () => {
 }
 
 // BUTTON EVENTS
-next.addEventListener('click', e => {nextSlide()})
-prev.addEventListener('click', e => {prevSlide()})
+next.addEventListener('click', e => {
+    nextSlide()
+    if(auto){
+        clearInterval(slideInterval)
+        slideInterval = setInterval(nextSlide, intervalTime)
+    }
+})
+prev.addEventListener('click', e => {
+    prevSlide()
+    if(auto){
+        clearInterval(slideInterval)
+        slideInterval = setInterval(nextSlide, intervalTime)
+    }
+})
+
+// AUTO SLIDE
+if(auto){
+    // RUN NEXT SLIDE AT INTERVAL
+    slideInterval = setInterval(nextSlide, intervalTime)
+}
